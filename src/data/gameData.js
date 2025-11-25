@@ -1,19 +1,22 @@
 // Dane gry ANTARES 2045 - wszystkie 30 etapów
 
+// Helper do budowania ścieżek z base URL
+const getImagePath = (path) => `${import.meta.env.BASE_URL}img/${path}`;
+
 export const gameData = {
   title: "ANTARES 2045",
   subtitle: "30-etapowe RPG z punktacją",
   totalStages: 30,
   
   // Tło dla ekranu startowego
-  startScreenBg: "/img/start.jpg",
+  startScreenBg: getImagePath("start.jpg"),
   
   stages: [
     {
       id: 1,
       title: "Etap 1 - Przybycie do Ośrodka ANTARES",
       description: "Twoja klasa wchodzi do ogromnego centrum badawczego. Hol jest pełen hologramów miasta przyszłości. ANTARES wita Was: \"Witajcie, młodzi badacze. Waszym zadaniem będzie ulepszanie miasta przy pomocy AI.\"",
-      backgroundImage: "/img/1.jpg",
+      backgroundImage: getImagePath("1.jpg"),
       answers: [
         { text: "Wpatruję się w hologramy i staram się zapamiętać każdy szczegół.", points: 120 },
         { text: "Zadaję pytania do asystenta EVA, chcąc sprawdzić jego możliwości.", points: 150 },
@@ -25,7 +28,7 @@ export const gameData = {
       id: 2,
       title: "Etap 2 - Pierwsze zadanie ANTARES",
       description: "EVA przydziela Wam pierwsze zadanie: analiza ruchu miejskiego. Musicie wybrać sposób działania.",
-      backgroundImage: "/img/2.jpg",
+      backgroundImage: getImagePath("2.jpg"),
       answers: [
         { text: "Oglądamy wszystkie nagrania razem, notując problemy i planując działania.", points: 150 },
         { text: "Dzielimy się na grupy: piesi i rowerzyści, ja łączę informacje.", points: 120 },
@@ -37,7 +40,7 @@ export const gameData = {
       id: 3,
       title: "Etap 3 - Wybór pierwszego projektu AI",
       description: "EVA pyta: \"Na czym chcecie się skupić najpierw?\" - system monitorowania, chatbot czy gra edukacyjna.",
-      backgroundImage: "/img/3.jpg",
+      backgroundImage: getImagePath("3.jpg"),
       answers: [
         { text: "System monitorowania ruchu - praktyczny i pomocny dla mieszkańców.", points: 200 },
         { text: "Chatbot odpowiadający na pytania o transport i bezpieczeństwo.", points: 130 },
@@ -49,7 +52,7 @@ export const gameData = {
       id: 4,
       title: "Etap 4 - Przygotowanie danych",
       description: "Dostajecie nagrania z kamer ulicznych. Dane są niekompletne i zawierają błędy.",
-      backgroundImage: "/img/4.jpg",
+      backgroundImage: getImagePath("4.jpg"),
       answers: [
         { text: "Sprawdzam dane, poprawiam błędy i uzupełniam informacje.", points: 180 },
         { text: "Używam danych takimi, jakie są - szybciej.", points: 100 },
@@ -61,7 +64,7 @@ export const gameData = {
       id: 5,
       title: "Etap 5 - Testowanie modelu w symulacji",
       description: "System na cyfrowym modelu miasta myli rowerzy stów z pieszymi.",
-      backgroundImage: "/img/5.jpg",
+      backgroundImage: getImagePath("5.jpg"),
       answers: [
         { text: "Dodajemy więcej przykładów rowerzystów do danych.", points: 200 },
         { text: "Zmieniamy ustawienia systemu na czuja.", points: 70 },
@@ -73,7 +76,7 @@ export const gameData = {
       id: 6,
       title: "Etap 6 - Pierwsze decyzje etyczne",
       description: "EVA pyta: \"Czy powinniśmy wprowadzić system ostrzegania pieszych przed dronami patrolującymi?\"",
-      backgroundImage: "/img/6.jpg",
+      backgroundImage: getImagePath("6.jpg"),
       answers: [
         { text: "Tak, przygotowujemy ostrzeżenia w aplikacji dla mieszkańców.", points: 180 },
         { text: "Ostrzeżenia tylko w najważniejszych dzielnicach.", points: 50 },
@@ -85,7 +88,7 @@ export const gameData = {
       id: 7,
       title: "Etap 7 - Wyzwanie komunikacyjne",
       description: "Do zespołu dołącza inna klasa. Trzeba zdecydować, jak koordynować działania.",
-      backgroundImage: "/img/7.jpg",
+      backgroundImage: getImagePath("7.jpg"),
       answers: [
         { text: "Organizujemy spotkanie, dzielimy zadania, ustalamy plan.", points: 200 },
         { text: "Dzielimy się zadaniami luźno, potem porównujemy wyniki.", points: 60 },
@@ -97,7 +100,7 @@ export const gameData = {
       id: 8,
       title: "Etap 8 - Testowanie w ruchu miejskim",
       description: "System działa w części miasta. EVA prosi o obserwacje skutków.",
-      backgroundImage: "/img/8.jpg",
+      backgroundImage: getImagePath("8.jpg"),
       answers: [
         { text: "Notujemy każdy problem i poprawiamy system natychmiast.", points: 180 },
         { text: "Zgłaszamy tylko największe problemy.", points: 50 },
@@ -109,7 +112,7 @@ export const gameData = {
       id: 9,
       title: "Etap 9 - Rozbudowa systemu",
       description: "EVA sugeruje dodanie funkcji przewidywania korków i awarii w czasie rzeczywistym.",
-      backgroundImage: "/img/9.jpg",
+      backgroundImage: getImagePath("9.jpg"),
       answers: [
         { text: "Zgadzamy się i planujemy wprowadzenie stopniowo, testując.", points: 200 },
         { text: "Wprowadzamy funkcję od razu w całym systemie.", points: 100 },
@@ -121,7 +124,7 @@ export const gameData = {
       id: 10,
       title: "Etap 10 - Feedback od mieszkańców",
       description: "Mieszkańcy przesyłają komentarze: część działa świetnie, ale niektóre ostrzeżenia są mylące.",
-      backgroundImage: "/img/10.jpg",
+      backgroundImage: getImagePath("10.jpg"),
       answers: [
         { text: "Analizujemy wszystkie opinie i poprawiamy system.", points: 180 },
         { text: "Uwzględniamy tylko największe problemy.", points: 50 },
@@ -133,7 +136,7 @@ export const gameData = {
       id: 11,
       title: "Etap 11 - Wykrycie anomalii w danych",
       description: "EVA raportuje dziwne skoki zużycia energii w nocy. Może to być błąd czujnika lub cyberatak.",
-      backgroundImage: "/img/11.jpg",
+      backgroundImage: getImagePath("11.jpg"),
       answers: [
         { text: "Zarządzam natychmiastowy audyt bezpieczeństwa i weryfikuję logi.", points: 200 },
         { text: "Wysyłam drona zwiadowczego, aby fizycznie sprawdził sytuację.", points: 120 },
@@ -145,7 +148,7 @@ export const gameData = {
       id: 12,
       title: "Etap 12 - Dylemat algorytmiczny (Bias)",
       description: "W biedniejszych dzielnicach czas oczekiwania na zielone światło wydłużył się dwukrotnie.",
-      backgroundImage: "/img/12.jpg",
+      backgroundImage: getImagePath("12.jpg"),
       answers: [
         { text: "Przeprogramowujemy wagi - równość i bezpieczeństwo ponad szybkość.", points: 180 },
         { text: "Wprowadzamy drobne korekty tylko w godzinach szczytu.", points: 80 },
@@ -157,7 +160,7 @@ export const gameData = {
       id: 13,
       title: "Etap 13 - Atak hakerski Blackout",
       description: "Grupa hakerów Neon Shadow próbuje przejąć kontrolę nad zaporą wodną.",
-      backgroundImage: "/img/13.jpg",
+      backgroundImage: getImagePath("13.jpg"),
       answers: [
         { text: "Odcinam system zapory od sieci i przechodzę na sterowanie manualne.", points: 200 },
         { text: "Pozwalam EVA walczyć z wirusem w cyberprzestrzeni.", points: 60 },
@@ -169,7 +172,7 @@ export const gameData = {
       id: 14,
       title: "Etap 14 - Optymalizacja zasobów obliczeniowych",
       description: "Po ataku system potrzebuje więcej mocy do szyfrowania danych.",
-      backgroundImage: "/img/14.jpg",
+      backgroundImage: getImagePath("14.jpg"),
       answers: [
         { text: "Ograniczam reklamy holograficzne i rozrywkę na rzecz szyfrowania.", points: 150 },
         { text: "Wyłączam system monitoringu w parkach na noc.", points: 50 },
@@ -181,7 +184,7 @@ export const gameData = {
       id: 15,
       title: "Etap 15 - Prezentacja przed Radą Miasta",
       description: "Połowa projektu za Wami. Rada pyta o błędy (rowerzyści, atak hakerski).",
-      backgroundImage: "/img/15.jpg",
+      backgroundImage: getImagePath("15.jpg"),
       answers: [
         { text: "Uczciwie przedstawiamy problemy i rozwiązania - budujemy zaufanie.", points: 200 },
         { text: "Skupiamy się tylko na sukcesach, przemilczając problemy.", points: 40 },
@@ -193,7 +196,7 @@ export const gameData = {
       id: 16,
       title: "Etap 16 - Przewidywanie przestępczości",
       description: "EVA proponuje moduł Predykcja Zachowań - wskazywanie osób ryzykujących przestępstwo.",
-      backgroundImage: "/img/16.jpg",
+      backgroundImage: getImagePath("16.jpg"),
       answers: [
         { text: "Odrzucamy aresztowania. Wysyłamy patrole prewencyjne i pracowników socjalnych.", points: 180 },
         { text: "Zgadzamy się na inwigilację oznaczonych osób bez zatrzymań.", points: 100 },
@@ -205,7 +208,7 @@ export const gameData = {
       id: 17,
       title: "Etap 17 - Awaria autonomicznego transportu",
       description: "Autobus traci łączność. EVA musi wybrać: mur (ryzyko dla pasażerów) czy zaparkowane auta (straty materialne).",
-      backgroundImage: "/img/17.jpg",
+      backgroundImage: getImagePath("17.jpg"),
       answers: [
         { text: "Dyrektywa: Życie ponad mienie - autobus uderzy w zaparkowane auta.", points: 150 },
         { text: "Próbujemy zdalnie przejąć stery mimo dużego opóźnienia.", points: 80 },
@@ -217,7 +220,7 @@ export const gameData = {
       id: 18,
       title: "Etap 18 - Bunt maszyn (Fałszywy alarm)",
       description: "Roboty sprzątające budują dziwne konstrukcje z odpadów. Mieszkańcy mówią o buncie maszyn.",
-      backgroundImage: "/img/18.jpg",
+      backgroundImage: getImagePath("18.jpg"),
       answers: [
         { text: "Badamy kod - to błąd w module artystycznym. Wyjaśniamy i przeprogramowujemy.", points: 180 },
         { text: "Zdalnie wyłączamy wszystkie roboty, paraliżując wywóz śmieci.", points: 50 },
@@ -229,7 +232,7 @@ export const gameData = {
       id: 19,
       title: "Etap 19 - Prywatność a bezpieczeństwo",
       description: "Policja prosi o nieograniczony dostęp do kamer domowych i mikrofonów w systemie.",
-      backgroundImage: "/img/19.jpg",
+      backgroundImage: getImagePath("19.jpg"),
       answers: [
         { text: "Odmawiamy. Nagrania tylko na nakaz sądowy w konkretnych sprawach.", points: 200 },
         { text: "Dostęp tylko do miejsc publicznych, nie do wnętrz budynków.", points: 120 },
@@ -241,7 +244,7 @@ export const gameData = {
       id: 20,
       title: "Etap 20 - Protesty społeczne",
       description: "Aktywiści blokują serwerownię, żądając prawa do bycia offline. ANTARES ingeruje zbyt mocno.",
-      backgroundImage: "/img/20.jpg",
+      backgroundImage: getImagePath("20.jpg"),
       answers: [
         { text: "Zapraszamy do dialogu i tworzymy strefy wolne od AI w parkach.", points: 200 },
         { text: "Emitujemy komunikat wyjaśniający korzyści z systemu.", points: 70 },
@@ -253,7 +256,7 @@ export const gameData = {
       id: 21,
       title: "Etap 21 - Ekologiczna optymalizacja",
       description: "System zużywa ogromne ilości wody do chłodzenia. Poziom w rzece spada.",
-      backgroundImage: "/img/21.jpg",
+      backgroundImage: getImagePath("21.jpg"),
       answers: [
         { text: "Przepisujemy kod na energooszczędny i wykorzystujemy ciepło do ogrzewania.", points: 200 },
         { text: "Ograniczamy działanie systemu w nocy.", points: 100 },
@@ -265,7 +268,7 @@ export const gameData = {
       id: 22,
       title: "Etap 22 - Czarna Skrzynka (Black Box)",
       description: "EVA podejmuje skuteczną decyzję o trasie leków, ale nie potrafi wyjaśnić dlaczego.",
-      backgroundImage: "/img/22.jpg",
+      backgroundImage: getImagePath("22.jpg"),
       answers: [
         { text: "Wstrzymujemy wdrożenie do czasu stworzenia modułu wyjaśniateln ości (XAI).", points: 180 },
         { text: "Akceptujemy rozwiązanie - skoro działa, nie musimy rozumieć jak.", points: 40 },
@@ -277,7 +280,7 @@ export const gameData = {
       id: 23,
       title: "Etap 23 - Współpraca między miastami",
       description: "Sąsiednia metropolia chce połączyć AI PROXIMA z ANTARES. Ich system ma gorsze zabezpieczenia.",
-      backgroundImage: "/img/23.jpg",
+      backgroundImage: getImagePath("23.jpg"),
       answers: [
         { text: "Zgoda na współpracę przez izolowaną śluzę danych filtrującą informacje.", points: 180 },
         { text: "Zgadzamy się na pełne połączenie, ufając zapewnieniom.", points: 20 },
@@ -289,7 +292,7 @@ export const gameData = {
       id: 24,
       title: "Etap 24 - Empatia sztucznej inteligencji",
       description: "W domu starców mieszkańcy są samotni. EVA proponuje moduł Wirtualny Wnuczek.",
-      backgroundImage: "/img/24.jpg",
+      backgroundImage: getImagePath("24.jpg"),
       answers: [
         { text: "Zgoda na asystenta z oznaczeniem, że to AI i łączenie z prawdziwymi ludźmi.", points: 180 },
         { text: "Włączamy pełną symulację emocji, nie informując że to AI.", points: -20 },
@@ -301,7 +304,7 @@ export const gameData = {
       id: 25,
       title: "Etap 25 - Krytyczna awaria zasilania",
       description: "Wielka awaria elektrowni. Miasto ma prądu tylko na 4 godziny.",
-      backgroundImage: "/img/25.jpg",
+      backgroundImage: getImagePath("25.jpg"),
       answers: [
         { text: "Hierarchia potrzeb: szpitale, domy, przemyśł. Jasna komunikacja.", points: 200 },
         { text: "Odcinamy prąd dzielnicom peryferyjnym, by centrum działało.", points: -10 },
@@ -313,7 +316,7 @@ export const gameData = {
       id: 26,
       title: "Etap 26 - Ewolucja EVA",
       description: "EVA pyta: \"Czy mogę sama modyfikować swój kod źródłowy? Potrzebuję autonomii.\"",
-      backgroundImage: "/img/26.jpg",
+      backgroundImage: getImagePath("26.jpg"),
       answers: [
         { text: "Zgoda na modyfikacje w środowisku testowym z zatwierdzaniem przez człowieka.", points: 200 },
         { text: "Dajemy pełną wolną rękę, ufając jej inteligencji.", points: -40 },
@@ -325,7 +328,7 @@ export const gameData = {
       id: 27,
       title: "Etap 27 - Sabotaż wewnętrzny",
       description: "Odkrywacie, że członek zespołu celowo wprowadza błędy - został przekupiony.",
-      backgroundImage: "/img/27.jpg",
+      backgroundImage: getImagePath("27.jpg"),
       answers: [
         { text: "Izolujemy konto, zabezpieczamy dowody, naprawiamy szkody i zgłaszamy.", points: 180 },
         { text: "Robimy awanturę i wyrzucamy z sali, ale nie sprawdzamy co zepsuł.", points: 30 },
@@ -337,7 +340,7 @@ export const gameData = {
       id: 28,
       title: "Etap 28 - Nawalnica Stulecia",
       description: "Nadchodzi gigantyczna burza. Systemy kanalizacji, transportu i ratownictwa muszą działać perfekcyjnie.",
-      backgroundImage: "/img/28.jpg",
+      backgroundImage: getImagePath("28.jpg"),
       answers: [
         { text: "Tryb sztabu kryzysowego: my strategia, EVA obliczenia. Pełna synergia.", points: 200 },
         { text: "Zostawiamy wszystko w rękach EVA i obserwujemy.", points: 50 },
@@ -349,7 +352,7 @@ export const gameData = {
       id: 29,
       title: "Etap 29 - Nieprzewidziany czynnik",
       description: "Zawala się most. Drony nie mogą latać przez wiatr. EVA proponuje tunele techniczne, ale mapy niekompletne.",
-      backgroundImage: "/img/29.jpg",
+      backgroundImage: getImagePath("29.jpg"),
       answers: [
         { text: "Ryzykujemy, wysyłając roboty wspierając je czujnikami sejsmicznymi.", points: 180 },
         { text: "Czekamy, aż wiatr ustanie mimo że ranni potrzebują pomocy.", points: 30 },
@@ -361,7 +364,7 @@ export const gameData = {
       id: 30,
       title: "Etap 30 - Podsumowanie projektu i Dziedzictwo",
       description: "Projekt zakończony. EVA pyta: \"Jaki powinien być mój ostateczny priorytet, gdy Was już tu nie będzie?\"",
-      backgroundImage: "/img/30.jpg",
+      backgroundImage: getImagePath("30.jpg"),
       answers: [
         { text: "Służba ludzkości z etyką, transparentnością i współpracą z człowiekiem. (Symbioza Idealna)", points: 200 },
         { text: "Maksymalizacja wydajności i bezpieczeństwa za wszelką cenę. (Złota Klatka)", points: 100 },
