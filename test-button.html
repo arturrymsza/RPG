@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Przycisku Vue</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #1e3a8a, #4c1d95);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 2rem;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 600px;
+      width: 100%;
+    }
+    button {
+      width: 100%;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .answer-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+    .answer-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .answer-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .next-btn {
+      background: linear-gradient(to right, #10b981, #059669);
+      color: white;
+      font-weight: bold;
+    }
+    .next-btn:hover {
+      background: linear-gradient(to right, #059669, #047857);
+      transform: scale(1.05);
+    }
+    .selected {
+      background: rgba(34, 197, 94, 0.5) !important;
+    }
+    .debug {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <h1>Test Mechaniki Pytań</h1>
+      <p>Pytanie {{ currentQuestion + 1 }} / 3</p>
+      
+      <h2>{{ questions[currentQuestion].title }}</h2>
+      
+      <div style="margin: 2rem 0;">
+        <button 
+          v-for="(answer, index) in questions[currentQuestion].answers"
+          :key="index"
+          @click="selectAnswer(answer)"
+          :disabled="answerSelected"
+          :class="['answer-btn', { selected: selectedAnswer === answer }]"
+        >
+          {{ answer.text }} ({{ answer.points }} pkt)
+        </button>
+      </div>
+      
+      <div v-if="answerSelected">
+        <button 
+          @click="nextQuestion" 
+          class="next-btn"
+        >
+          {{ currentQuestion < 2 ? 'Następne pytanie →' : 'Zakończ' }}
+        </button>
+      </div>
+      
+      <div class="debug">
+        <strong>DEBUG INFO:</strong><br>
+        Pytanie: {{ currentQuestion }}<br>
+        Odpowiedź wybrana: {{ answerSelected ? 'TAK' : 'NIE' }}<br>
+        Wynik: {{ totalScore }} pkt<br>
+        Kliknięte pytania: {{ answeredQuestions.join(', ') || 'brak' }}
+      </div>
+      
+      <div class="debug" style="margin-top: 1rem;">
+        <strong>LOGI:</strong><br>
+        <div v-for="(log, index) in logs" :key="index" style="margin: 0.2rem 0;">
+          {{ log }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+
+    createApp({
+      setup() {
+        const currentQuestion = ref(0);
+        const totalScore = ref(0);
+        const answerSelected = ref(false);
+        const selectedAnswer = ref(null);
+        const answeredQuestions = ref([]);
+        const logs = ref(['Aplikacja uruchomiona']);
+        
+        const questions = [
+          {
+            title: 'Pytanie 1',
+            answers: [
+              { text: 'Odpowiedź A', points: 100 },
+              { text: 'Odpowiedź B', points: 150 },
+              { text: 'Odpowiedź C', points: 80 },
+              { text: 'Odpowiedź D', points: -20 }
+            ]
+          },
+          {
+            title: 'Pytanie 2',
+            answers: [
+              { text: 'Odpowiedź A', points: 120 },
+              { text: 'Odpowiedź B', points: 200 },
+              { text: 'Odpowiedź C', points: 60 },
+              { text: 'Odpowiedź D', points: -10 }
+            ]
+          },
+          {
+            title: 'Pytanie 3',
+            answers: [
+              { text: 'Odpowiedź A', points: 180 },
+              { text: 'Odpowiedź B', points: 150 },
+              { text: 'Odpowiedź C', points: 100 },
+              { text: 'Odpowiedź D', points: 50 }
+            ]
+          }
+        ];
+
+        const addLog = (msg) => {
+          logs.value.unshift(`[${new Date().toLocaleTimeString()}] ${msg}`);
+          if (logs.value.length > 10) logs.value.pop();
+        };
+
+        const selectAnswer = (answer) => {
+          addLog(`selectAnswer called: ${answer.text}`);
+          
+          if (answerSelected.value) {
+            addLog('❌ Odpowiedź już wybrana!');
+            return;
+          }
+          
+          if (answeredQuestions.value.includes(currentQuestion.value)) {
+            addLog('❌ To pytanie było już odpowiedziane!');
+            return;
+          }
+          
+          answerSelected.value = true;
+          selectedAnswer.value = answer;
+          totalScore.value += answer.points;
+          answeredQuestions.value.push(currentQuestion.value);
+          
+          addLog(`✅ Wybrano: ${answer.text} (+${answer.points} pkt)`);
+          addLog(`Nowy wynik: ${totalScore.value} pkt`);
+        };
+
+        const nextQuestion = () => {
+          addLog('🔥 nextQuestion CLICKED!');
+          
+          if (currentQuestion.value < 2) {
+            currentQuestion.value++;
+            answerSelected.value = false;
+            selectedAnswer.value = null;
+            
+            addLog(`✅ Przeszło do pytania ${currentQuestion.value + 1}`);
+          } else {
+            addLog('🏆 Koniec testu!');
+            alert(`Koniec! Twój wynik: ${totalScore.value} pkt`);
+          }
+        };
+
+        return {
+          currentQuestion,
+          totalScore,
+          answerSelected,
+          selectedAnswer,
+          answeredQuestions,
+          questions,
+          logs,
+          selectAnswer,
+          nextQuestion
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test ANTARES 2045</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #1e3a8a, #4c1d95);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      width: 90%;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(to right, #3b82f6, #9333ea);
+      border: none;
+      border-radius: 0.5rem;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .error {
+      color: #fca5a5;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ANTARES 2045</h1>
+    <p>Test działania przycisku</p>
+    
+    <input 
+      type="text" 
+      id="playerName" 
+      placeholder="Wprowadz swoje imie..."
+      maxlength="20"
+    />
+    
+    <div id="error" class="error"></div>
+    
+    <button id="startBtn">
+      🚀 Rozpocznij Przygode
+    </button>
+    
+    <div id="status" style="margin-top: 1rem; font-size: 0.9rem;"></div>
+  </div>
+
+  <script type="module">
+    const playerNameInput = document.getElementById('playerName');
+    const startBtn = document.getElementById('startBtn');
+    const errorDiv = document.getElementById('error');
+    const statusDiv = document.getElementById('status');
+
+    startBtn.addEventListener('click', () => {
+      console.log('Button clicked!');
+      const name = playerNameInput.value.trim();
+      
+      if (!name) {
+        errorDiv.textContent = 'Prosze wpisac imie!';
+        return;
+      }
+      
+      if (name.length < 2) {
+        errorDiv.textContent = 'Imie musi miec przynajmniej 2 znaki!';
+        return;
+      }
+      
+      errorDiv.textContent = '';
+      statusDiv.textContent = `✅ Witaj ${name}! Przejście do gry...`;
+      
+      // Zapisz dane
+      sessionStorage.setItem('playerName', name);
+      sessionStorage.setItem('currentStage', '0');
+      sessionStorage.setItem('totalScore', '0');
+      
+      console.log('Session storage:', {
+        playerName: sessionStorage.getItem('playerName'),
+        currentStage: sessionStorage.getItem('currentStage'),
+        totalScore: sessionStorage.getItem('totalScore')
+      });
+      
+      // Symulacja przejścia (w prawdziwej aplikacji: router.push('/question'))
+      setTimeout(() => {
+        statusDiv.textContent += '\n🎮 Router push -> /question';
+        alert('Test OK! Przycisk działa. Sprawdź konsolę (F12)');
+      }, 500);
+    });
+
+    playerNameInput.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        startBtn.click();
+      }
+    });
+
+    console.log('Test page loaded. Type name and click button.');
+  </script>
+</body>
+</html>

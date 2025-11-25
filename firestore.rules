@@ -1,0 +1,38 @@
+// Firebase Firestore Security Rules
+// Skopiuj te reguły do Firebase Console -> Firestore Database -> Rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Kolekcja graczy
+    match /players/{playerId} {
+      // Wszyscy mogą czytać dane graczy (dla rankingu)
+      allow read: if true;
+      
+      // Zapis dozwolony dla wszystkich (w wersji produkcyjnej dodaj autentykację)
+      allow create: if request.resource.data.keys().hasAll(['name', 'score', 'timestamp'])
+                    && request.resource.data.name is string
+                    && request.resource.data.score is number
+                    && request.resource.data.timestamp is string;
+      
+      // Aktualizacja wyniku
+      allow update: if request.resource.data.keys().hasAll(['name', 'score', 'timestamp'])
+                    && request.resource.data.name is string
+                    && request.resource.data.score is number
+                    && request.resource.data.timestamp is string;
+      
+      // Usuwanie zabronione (opcjonalnie)
+      allow delete: if false;
+    }
+  }
+}
+
+// UWAGA: W wersji produkcyjnej zalecane jest:
+// 1. Dodanie Firebase Authentication
+// 2. Ograniczenie liczby zapisów per użytkownik
+// 3. Walidacja wartości score (max, min)
+// 
+// Przykład z autentykacją:
+// allow write: if request.auth != null 
+//              && request.auth.uid == playerId;
