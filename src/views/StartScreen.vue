@@ -30,14 +30,14 @@
         <div class="space-y-6">
           <div>
             <label for="playerName" class="block text-white text-lg font-semibold mb-2">
-              Wprowadź swoje imię:
+              Wprowadź swoją klasę:
             </label>
             <input
               id="playerName"
               v-model="playerName"
               type="text"
               maxlength="20"
-              placeholder="Twoje imię..."
+              placeholder="Twoja klasa..."
               class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 text-white placeholder-blue-200 border-2 border-transparent focus:border-blue-400 focus:outline-none transition-all"
               @keyup.enter="startGame"
             />
